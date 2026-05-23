@@ -5,47 +5,60 @@
       <img alt="Superloom" src="https://raw.githubusercontent.com/superloomdev/superloom/main/superloom.png" height="80">
     </picture>
   </a>
-  <h1>js-demo-project</h1>
-  <p><strong>JavaScript reference demo application for the Superloom framework.</strong></p>
+  <h1>JavaScript Demo Project</h1>
+  <p>A working example of the Superloom framework layers. Part of <a href="https://superloom.dev">Superloom</a>.</p>
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
   [![Node.js 24+](https://img.shields.io/badge/Node.js-24%2B-brightgreen.svg)](https://nodejs.org)
 
 </div>
 
-## What's Here
+## What this is
 
-A reference implementation that shows how the Superloom layers fit together end-to-end: model → controller → service → interfaces (Express + Lambda), with the same business logic running unchanged on both.
+This is a complete working application. It demonstrates how model, controller, service, and interface layers work together. The same business logic runs on Express and Lambda without duplication. Only the transport adapter changes.
 
-Use this as a starting point for your own application: clone, rename, and build from here.
+## Why use this project
 
-## Structure
+- **Starting point for new applications.** Fork or clone this repo, rename the packages, and you have a working foundation.
+
+- **Reference for layer patterns.** See how data flows from HTTP request through controller, service, and model layers with clear separation of concerns.
+
+- **Working test setup.** Each layer has its own test suite. Use this as a template for testing your own applications.
+
+- **Demonstrates deployment flexibility.** The same code runs on Docker and AWS Lambda. Only the interface adapter changes. Your business logic stays untouched.
+
+## Architecture Overview
 
 ```
 js-demo-project/
-  ops/        Operations runbook (numbered, sequential setup guides)
+  ops/              # Operations runbooks (numbered setup guides)
   src/
-    model/          Base domain models (pure, IO-free)
-    model-server/   Server-only model extensions
-    model-client/   Client-only model extensions
-    server/         Express + Lambda server (controller, service, interfaces)
+    model/          # Base domain models (pure, no I/O)
+    model-server/   # Server-only model extensions
+    model-client/   # Client-only model extensions
+    server/         # Express + Lambda interfaces, controllers, services
 ```
 
-## Framework Conventions
+Request flow: HTTP → Interface (Express or Lambda) → Controller → Service → Model → Response.
 
-All architecture decisions, coding standards, and patterns used in this project are defined in the **[superloom](https://github.com/superloomdev/superloom)** repository. Read the framework docs before extending this project.
+## Aligned with Superloom Philosophy
 
-The helper modules this project depends on live in **[js-helper-modules](https://github.com/superloomdev/js-helper-modules)** and are published as `@superloomdev/*` on GitHub Packages.
+This project uses the patterns documented in the Superloom framework. Every architectural decision is explained in the [framework docs](https://superloom.dev/docs/foundations/architectural-philosophy).
 
-## Quick Links
+## Extended Documentation
 
-| Resource | Link |
-|---|---|
-| Framework docs | [superloom.dev/docs](https://superloom.dev/docs/) |
-| Getting started | [docs/guide/getting-started](https://superloom.dev/docs/guide/getting-started) |
-| Architecture | [docs/foundations/architectural-philosophy](https://superloom.dev/docs/foundations/architectural-philosophy) |
-| Helper modules | [github.com/superloomdev/js-helper-modules](https://github.com/superloomdev/js-helper-modules) |
+- [Framework docs](https://superloom.dev/docs/) — architecture and patterns
+- [Getting started](https://superloom.dev/docs/guide/getting-started) — run this demo project
+- [Creating entities](https://superloom.dev/docs/guide/creating-entities-js) — add new features to this project
+
+## Adding to Your Project
+
+1. Fork or clone this repository
+2. Rename packages in `src/*/package.json`
+3. Run `npm install` in each `src/*/` directory
+4. Copy `env/` templates and fill in your values
+5. Follow the numbered guides in `ops/`
 
 ## License
 
-[MIT](LICENSE) — free for commercial use.
+MIT — free for commercial use.

@@ -52,7 +52,22 @@ const Handler = module.exports = function (initiator_function) {
     await _initIfNeeded();
 
     // Execute the handler function
-    return await initiator_function(event, context, callback);
+    const response = await initiator_function(event, context, callback);
+
+    // Merge Set-Cookie headers from result.cookies into the response
+    const result_cookies = response && response._cookies;
+    if (result_cookies) {
+      const set_cookie = Lib.Functions.serializeCookieHeaders(result_cookies);
+      if (set_cookie.length > 0) {
+        response.headers = response.headers || {};
+        response.headers['Set-Cookie'] = set_cookie.length === 1
+          ? set_cookie[0]
+          : set_cookie;
+      }
+      delete response._cookies;
+    }
+
+    return response;
 
   };
 

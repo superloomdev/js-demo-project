@@ -37,6 +37,7 @@ const initRoutes = function (Lib) {
     });
 
     const result = await Lib.SurveyController.create(standard_request);
+    Functions.applyResponseCookies(res, result.cookies);
     res.status(result.status).json(result);
 
   });
@@ -60,6 +61,7 @@ const initRoutes = function (Lib) {
     });
 
     const result = await Lib.SurveyController.getById(standard_request);
+    Functions.applyResponseCookies(res, result.cookies);
     res.status(result.status).json(result);
 
   });
@@ -83,6 +85,7 @@ const initRoutes = function (Lib) {
     });
 
     const result = await Lib.SurveyController.update(standard_request);
+    Functions.applyResponseCookies(res, result.cookies);
     res.status(result.status).json(result);
 
   });

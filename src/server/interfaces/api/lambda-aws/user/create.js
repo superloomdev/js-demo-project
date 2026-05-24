@@ -32,7 +32,8 @@ module.exports.handler = Handler(async function (event, context, callback) {
   return {
     statusCode: result.status,
     headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-    body: JSON.stringify(result)
+    body: JSON.stringify(result),
+    _cookies: result.cookies
   };
 
 });

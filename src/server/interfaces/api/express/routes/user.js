@@ -41,6 +41,7 @@ const initRoutes = function (Lib) {
     const result = await Lib.UserController.create(standard_request);
 
     // Send response
+    Functions.applyResponseCookies(res, result.cookies);
     res.status(result.status).json(result);
 
   });
@@ -68,6 +69,7 @@ const initRoutes = function (Lib) {
     const result = await Lib.UserController.getById(standard_request);
 
     // Send response
+    Functions.applyResponseCookies(res, result.cookies);
     res.status(result.status).json(result);
 
   });
@@ -95,6 +97,7 @@ const initRoutes = function (Lib) {
     const result = await Lib.UserController.update(standard_request);
 
     // Send response
+    Functions.applyResponseCookies(res, result.cookies);
     res.status(result.status).json(result);
 
   });
